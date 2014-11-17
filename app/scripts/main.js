@@ -14,8 +14,8 @@ var testApp = {
 	},
 
 	options:{
-		x:15,
-		y:15
+		x:30,
+		y:30
 	},
 
 	grid:null,

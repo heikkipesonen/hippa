@@ -37,13 +37,7 @@ Grid.prototype = {
 			y: (this.options.y * this.options.size)/2,
 		}
 
-
-
-		this.sprite = new PIXI.Sprite(this.grid.generateTexture());
-
-		
-
-		console.log(this.count)
+		this.sprite = new PIXI.Sprite(this.grid.generateTexture());		
 	},
 
 	_drawGridItem:function(x,y){
@@ -68,6 +62,13 @@ Grid.prototype = {
 		}
 	},
 
+	getPositionOnGrid:function(x,y){
+		var px = x / this.options.size;
+		var py = y / this.options.size;
+
+
+	},
+
 	getGridCenterPosition:function(x,y){
 		var cx = (this.options.size * x) + this.options.size/2;
 		var cy = (this.options.size * y) + this.options.size/2;
@@ -86,8 +87,11 @@ Grid.prototype = {
 
 			if (this.tween) this.tween.stop();
 			
+
+			// this is wrong, but results very smooth animation
 			this.tween = new TWEEN.Tween(this.sprite.position)
-				.to({x:cx-pos.x, y: cy-pos.y},500).start();
+				.to({x:cx-pos.x, y: cy-pos.y},500)				
+				.start();
 
 			//this.sprite.position.x = cx - pos.x;
 			//this.sprite.position.y = cy - pos.y;
