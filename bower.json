@@ -1,0 +1,9 @@
+{
+  "name": "canvas",
+  "private": true,
+  "dependencies": {
+    "pixi": "~2.0.0",
+    "tweenjs": "*",
+    "socket.io-client": "~1.2.0"
+  }
+}
