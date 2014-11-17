@@ -85,13 +85,19 @@ Grid.prototype = {
 			var cx = window.innerWidth / 2;
 			var cy = window.innerHeight / 2;
 
-			if (this.tween) this.tween.stop();
+			var dx = cx - pos.x - this.sprite.position.x;
+			var dy = cy - pos.y - this.sprite.position.y;
+
+			this.sprite.position.x += dx / 35;
+			this.sprite.position.y += dy / 35;
+
+			//if (this.tween) this.tween.stop();
 			
 
 			// this is wrong, but results very smooth animation
-			this.tween = new TWEEN.Tween(this.sprite.position)
-				.to({x:cx-pos.x, y: cy-pos.y},500)				
-				.start();
+			//this.tween = new TWEEN.Tween(this.sprite.position)
+			//	.to({x:cx-pos.x, y: cy-pos.y},500)				
+			//	.start();
 
 			//this.sprite.position.x = cx - pos.x;
 			//this.sprite.position.y = cy - pos.y;

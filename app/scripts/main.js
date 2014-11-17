@@ -9,8 +9,8 @@ var testApp = {
 
 	player:null,
 	position:{
-		x:8,
-		y:7
+		x:1,
+		y:1
 	},
 
 	options:{
