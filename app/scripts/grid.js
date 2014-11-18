@@ -1,6 +1,6 @@
 
 function Grid(x,y){
-	this.tween = false;
+	
 	this.options = {
 		size:64,
 		x:x,
@@ -48,8 +48,20 @@ Grid.prototype = {
 		this.grid.drawRect(xpos, ypos, this.options.size, this.options.size );
 	},
 
+	addChild:function(item){
+		this.sprite.addChild(item);
+	},
+
+	removeChild:function(item){
+		this.sprite.removeChild(item);
+	},
+
 	show:function(parent){
 		parent.addChild(this.sprite);
+	},
+	
+	remove:function(parent){
+		parent.removeChild(this.sprite);
 	},
 
 	getGridPosition:function(x,y){
@@ -80,16 +92,20 @@ Grid.prototype = {
 
 	centerOnItem:function(x,y){
 		//if (this.currentItem.x !== x || this.currentItem.y !== y){
-			this.currentItem = {x:x,y:y};
-			var pos = this.getGridCenterPosition(x,y);
-			var cx = window.innerWidth / 2;
-			var cy = window.innerHeight / 2;
+			
+		this.currentItem = {x:x,y:y};
+		var pos = this.getGridCenterPosition(x,y);
+		var cx = window.innerWidth / 2;
+		var cy = window.innerHeight / 2;
 
-			var dx = cx - pos.x - this.sprite.position.x;
-			var dy = cy - pos.y - this.sprite.position.y;
+		var dx = cx - pos.x - this.sprite.position.x;
+		var dy = cy - pos.y - this.sprite.position.y;		
+		var dt = Date.now() - this.lastStepTIme || 16;
 
-			this.sprite.position.x += dx / 35;
-			this.sprite.position.y += dy / 35;
+		this.sprite.position.x += dx/300 * dt;
+		this.sprite.position.y += dy/300 * dt;
+
+			//console.log( dx / 35  - dt)
 
 			//if (this.tween) this.tween.stop();
 			
@@ -102,6 +118,8 @@ Grid.prototype = {
 			//this.sprite.position.x = cx - pos.x;
 			//this.sprite.position.y = cy - pos.y;
 		//}
+
+		this.lastStepTIme = Date.now();
 	},
 
 	getItemAt:function(x,y){
